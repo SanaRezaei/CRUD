@@ -11,8 +11,9 @@ class Database {
 public static function connect(){
     if ( null == self :: $cont ){
         try {
-            self :: $cont= new PDO (
-                "mysql:host=". self:: $dbhost. "dbname=". self:: $dbName . ";port=" . self ::$port,);
+            $arg = "mysql:host=" . self::$dbHost . ";dbname=" . self::$dbName . ";port=" . self::$port;
+            self::$cont = new PDO (
+                $arg, self::$dbUsername, self::$dbUserPassword);
 
         }catch (PDOException $e) {
             die ($e -> getMessage());
@@ -23,6 +24,7 @@ public static function connect(){
 public static function disconnect (){
     self :: $cont = null ;
 }
+
 }
 
 ?>

@@ -11,7 +11,7 @@
 <?php
 include "./database.php";
 $db = Database :: connect ();
-foreach ($db -> query (" SELECT * FROM `List`ORDER BY id")as $user){ ?>
+foreach ($db -> query (" SELECT * FROM `List` ORDER BY id")as $user){ ?>
     <h3>Salam</h3>
     <div class="card" style="width: 18rem;">
     <div class="card-body">
