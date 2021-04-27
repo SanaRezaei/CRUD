@@ -7,29 +7,44 @@
     <title>Document</title>
 </head>
 <body>
+
+<form method="POST">
+  <label for="Name" >Name of the lists</label>
+  <input type="text" name="Name" id="Name">
+  <label for="color" >Color</label>
+  <input type="color" name="color" id="color">
+<input type="submit" value="Add to list" >
+</form>
+
 <?php
 include "./database.php";
 $db = Database::connect ();
 if ($_POST){
-    $name = $_POST['name'];
-    $color = $_POST['name'];
-    $sql = "INSERT INTO `List`(name, color) VALUES ('{$name}','{$color}', ";
-    $db->query($sql);
-}?>
-<form>
-<div class="mb-3">
-  <label for="Name" class="form-label">Name</label>
-  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-</div>
-<div class="mb-3">
-  <label for="color" class="form-label">Color</label>
-  <input type="color" class="form-control" id="exampleInputPassword1">
-</div>
-<button type="submit" class="btn btn-primary">Create the List</button>
-</form>
-<?php
+
+    try {
+        // read number of table rows
+        $sql = "SELECT count(*) FROM List"; 
+        $result = $db->prepare($sql); 
+        $result->execute(); 
+        $number_of_rows = $result->fetchColumn(); 
+
+        // insert to table with id = number of row +1
+        $name = $_POST['Name'];
+        $color = $_POST['color'];
+        $id = $number_of_rows+1;
+        $sql = "INSERT INTO List (id, name, color) VALUES (?, ?, ?)";
+        $query = $db->prepare($sql);
+        $query->execute([$id, $name, $color]);
+    }
+    catch(Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+    
+}
 Database :: disconnect();
 ?>
+
+
 </body>
 </html>
 

@@ -9,7 +9,7 @@ class Database {
     private static $cont = null;
 
 public static function connect(){
-    if ( null == self :: $cont ){
+    if ( null == self::$cont ){
         try {
             $arg = "mysql:host=" . self::$dbHost . ";dbname=" . self::$dbName . ";port=" . self::$port;
             self::$cont = new PDO (
@@ -19,10 +19,10 @@ public static function connect(){
             die ($e -> getMessage());
         }
     }
-    return self :: $cont;
+    return self::$cont;
 }
 public static function disconnect (){
-    self :: $cont = null ;
+    self::$cont = null ;
 }
 
 }
