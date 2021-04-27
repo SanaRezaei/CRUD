@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 <?php
 include "./database.php";
 $db = Database::connect ();
@@ -6,14 +15,23 @@ if ($_POST){
     $color = $_POST['name'];
     $sql = "INSERT INTO `List`(name, color) VALUES ('{$name}','{$color}', ";
     $db->query($sql);
-}
-Database :: disconnect();
-
-?>
-<form method = "post">
-    <label for="name" class="form-label">Name</label>
-    <input type="text" name="Name" value="<?=$List['name']?>">
-    <label for="color" class="form-label">COLOR</label>
-    <input type="text" name="Color">
-    <input type="submit" value="Create">
+}?>
+<form>
+<div class="mb-3">
+  <label for="Name" class="form-label">Name</label>
+  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+</div>
+<div class="mb-3">
+  <label for="color" class="form-label">Color</label>
+  <input type="color" class="form-control" id="exampleInputPassword1">
+</div>
+<button type="submit" class="btn btn-primary">Create the List</button>
 </form>
+<?php
+Database :: disconnect();
+?>
+</body>
+</html>
+
+
+

@@ -12,15 +12,13 @@
 include "./database.php";
 $db = Database :: connect ();
 foreach ($db -> query (" SELECT * FROM `List` ORDER BY id")as $user){ ?>
-    <h3>Salam</h3>
     <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <a href="#" class="btn btn-primary">Modifier</a>
-      <a href="#" class="btn btn-primary">Supprimer</a>
-    </div>
-  </div> 
-  <h3>Salam</h3>
+  <div class="card-body">
+    <h5 class="card-title" style= "<?php echo "background-color: {$user['color']};"?>"><?php echo $user['name']?></h5>
+    <a href="./update.php" class="btn btn-primary">Modifier</a>
+    <a href="./delete.php" class="btn btn-primary">Supprimer</a>
+  </div>
+</div>
 <?php };
 Database :: disconnect();
 ?>
