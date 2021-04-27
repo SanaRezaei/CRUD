@@ -15,7 +15,7 @@ foreach ($db -> query (" SELECT * FROM `List` ORDER BY id")as $user){ ?>
     <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title" style= "<?php echo "background-color: {$user['color']};"?>"><?php echo $user['name']?></h5>
-    <a href="./update.php" class="btn btn-primary">Modifier</a>
+    <a href="./update.php?id=<?php echo $user['id']; ?>" class="btn btn-primary">Modifier</a>
     <a href="./delete.php" class="btn btn-primary">Supprimer</a>
   </div>
 </div>

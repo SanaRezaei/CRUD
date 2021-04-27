@@ -1,24 +1,29 @@
 <?php
 include "./database.php";
-$pdo = Database ::connect ();
-$sql = "UPDATE `List` SET name= '{$_POST['name']}',color='{$_POST['color']}";
-$pdo -> query ($sql);
-$req = $pdo -> query ("SELECT * FROM `List` WHERE id={$_GET ['id']} ");
-$user = $req -> fetch();
+$id = $_GET['id']; 
 
+$db = Database::connect();
+if ($_POST){
+    try{
+        $db = Database::connect();
+        $name = $_POST['name'];
+        $color = $_POST['color'];
+        $sql = "UPDATE List SET name = ?, color = ? WHERE id=?";
+        $query = $db->prepare($sql);
+        $query->execute([$name, $color, $id]);
+    }
+    catch(Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
 Database :: disconnect();
 
 ?>
 
-<form>
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name"  placeholder="Enter your Name">
-  </div>
-  <div class="form-group">
-    <label for="color">Color</label>
-    <input type="color" class="form-control" id="color" placeholder="color">
-  </div>
-  <button type="submit" class="btn btn-primary">Modifier</button>
-  <button type="submit" class="btn btn-primary">Supprimer</button>
-  </form>
+<form method="POST">
+  <label for="name" >Name of the lists</label>
+  <input type="text" name="name" id="name">
+  <label for="color" >Color</label>
+  <input type="color" name="color" id="color">
+  <input type="submit" value="Add to list" >
+</form>
