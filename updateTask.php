@@ -20,7 +20,6 @@
   if ($_POST){
     $title = $_POST['title'];
     $sql = "UPDATE Task SET title='{$_POST['title']}' WHERE id='{$id}'";
-    echo "sql: " . $sql;
     $db->query($sql);
     header('Location: index.php');
   }

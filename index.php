@@ -21,8 +21,9 @@ foreach ($db -> query (" SELECT * FROM List ORDER BY id")as $list){ ?>
         foreach ($db -> query (" SELECT * FROM Task where id_list=$list[id]")as $task){
           // echo "<p> selected task: " . $task['title'];  
       ?>
+      <input class="form-check-input me-1" type="checkbox" value="" <?php if ($task['statut'] == 1) echo " checked"; ?> 
+             onclick='window.location.assign("./checkbox.php?id=<?php echo $task["id"];?> &statut=<?php echo $task["statut"];?>")'>
       
-      <input class="form-check-input me-1" type="checkbox" value="" <?php if ($task['statut'] == 1) echo " checked"; ?> >
       <a href="./updateTask.php?id=<?php echo $task['id'];?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
       <a href="./deleteTask.php?id=<?php echo $task['id'];?>"><i class="far fa-trash-alt"></i></a>
       <?php echo $task['title'] . "<br>"; ?>
