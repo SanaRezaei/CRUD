@@ -24,7 +24,7 @@ foreach ($db -> query (" SELECT * FROM List ORDER BY id")as $list){ ?>
       
       <input class="form-check-input me-1" type="checkbox" value="" <?php if ($task['statut'] == 1) echo " checked"; ?> >
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-      <i class="far fa-trash-alt"></i>
+      <a href="./deleteTask.php?id=<?php echo $task['id'];?>"><i class="far fa-trash-alt"></i></a>
       <?php echo $task['title'] . "<br>"; ?>
       
       <?php } ?>
