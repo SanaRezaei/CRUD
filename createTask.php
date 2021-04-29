@@ -8,12 +8,44 @@
     <title>Document</title>
 </head>
 <body>
-<form>
+<?php
+ include "./database.php";
+ $db = Database::connect ();
+ $id_list = $_GET['id']; 
+ echo $id;
+ if ($_POST){
+    try {
+        // echo "value is: " . $_POST['title'];
+        // read number of table rows
+        $sql = "SELECT count(*) FROM Task"; 
+        $result = $db->prepare($sql); 
+        $result->execute(); 
+        $rows = $result->fetchColumn(); 
+
+        // // insert to table Task with id = number of rows +1
+        $title = $_POST['title'];
+        $sql = "INSERT INTO Task (id, title, statut, id_list) VALUES (?, ?, ?, ?)";
+        $query = $db->prepare($sql);
+        $query->execute([$rows +1, $_POST['title'], 0, $id_list]);
+    }
+    catch(Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+    
+}
+ Database :: disconnect();
+ ?>
+
+<div class="container" style ="width:50%;">
+<h3>Add task to list</h3>
+
+<form method="POST">
   <div class="mb-3">
     <label for="name" class="form-label">Task's Title</label>
-    <input type="text" class="form-control" id="tasksid" >
+    <input type="text" class="form-control" value="" name="title" id="title" >
   </div>
   <button type="submit" class="btn btn-primary">Create the Tasks</button>
 </form>
+</div>
 </body>
 </html>

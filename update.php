@@ -37,6 +37,8 @@
     Database :: disconnect();
     ?>
 
+<div class="container" style ="width:50%;">
+<h3>Update the List</h3>
 <form method="POST">
 <div class="mb-3">
     <label for="name" class="form-label" >Name of the lists</label>
@@ -48,6 +50,7 @@
   </div>
   <button type="submit" class="btn btn-primary">Modifier</button>
 </form>
+</div>
 
 </body>
 </html>

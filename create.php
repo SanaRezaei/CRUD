@@ -9,17 +9,21 @@
 </head>
 <body>
 
-<form method="POST">
-<div class="mb-3">
-    <label for="Name" class="form-label" >Name of the lists</label>
-    <input type="text" name="Name" id="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-  </div>
-  <div class="mb-3">
-    <label for="color" class="form-label" >Color</label>
-    <input type="color" name="color" id="color" class="form-control" id="exampleInputPassword1">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="container" style ="width:50%;">
+    <form method="POST">
+    <div class="mb-3">
+        <label for="Name" class="form-label" >Name of the lists</label>
+        <input type="text" name="Name" id="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="color" class="form-label" >Color</label>
+        <input type="color" name="color" id="color" class="form-control" id="exampleInputPassword1">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
 
 
 

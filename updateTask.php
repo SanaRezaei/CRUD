@@ -8,6 +8,12 @@
     <title>Document</title>
 </head>
 <body>
+<?php
+ include "./database.php";
+ $id = $_GET['id']; 
+ ?>
+
+<div class="container" style ="width:50%;">
 <form>
   <div class="mb-3">
     <label for="name" class="form-label">Task's Title</label>
@@ -15,5 +21,6 @@
   </div>
   <button type="submit" class="btn btn-primary">Edit the Tasks</button>
 </form>
+</div>
 </body>
 </html>
