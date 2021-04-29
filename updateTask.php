@@ -9,15 +9,30 @@
 </head>
 <body>
 <?php
- include "./database.php";
- $id = $_GET['id']; 
- ?>
+  include "./database.php";
+  $id = $_GET['id'];
+  $db = Database::connect ();
+
+  $sql = "SELECT * FROM Task where id=?"; 
+  $result = $db->prepare($sql); 
+  $result->execute([$id]); 
+  $task = $result->fetch(); 
+  if ($_POST){
+    $title = $_POST['title'];
+    $sql = "UPDATE Task SET title='{$_POST['title']}' WHERE id='{$id}'";
+    echo "sql: " . $sql;
+    $db->query($sql);
+    header('Location: index.php');
+  }
+
+  Database :: disconnect();
+?>
 
 <div class="container" style ="width:50%;">
-<form>
+<form method="POST">
   <div class="mb-3">
-    <label for="name" class="form-label">Task's Title</label>
-    <input type="text" class="form-control" id="tasksid" >
+    <label for="title" class="form-label">Task's Title</label>
+    <input type="text" class="form-control" name="title" id="title" value="<?php echo $task["title"]; ?>">
   </div>
   <button type="submit" class="btn btn-primary">Edit the Tasks</button>
 </form>
